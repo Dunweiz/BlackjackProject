@@ -6,7 +6,13 @@ public class Deck {
 	public Deck() {
 	cards = deckOfCards();	
 	}
-	private List<Card> deckOfCards(){
+	
+	public Deck(List<Card> cards) {
+		super();
+		this.cards = cards;
+	}
+
+	public List<Card> deckOfCards(){
 		List<Card> deck = new ArrayList<>(52);
 		for(Suit suit : Suit.values()) {
 			for(Rank rank : Rank.values()) {
@@ -15,9 +21,20 @@ public class Deck {
 		}
 		return deck;
 	}
+	public List<Card> getCards() {
+		return cards;
+	}
+	public void setCards(List<Card> cards) {
+		this.cards = cards;
+	}
 	public int checkDeckSize(){
 		return cards.size();
 	}
+	@Override
+	public String toString() {
+		return "Deck [cards=" + cards + "]";
+	}
+
 	public Card dealCard() {
 		return cards.remove(0);
 	}

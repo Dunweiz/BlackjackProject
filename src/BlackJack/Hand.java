@@ -14,8 +14,9 @@ public class Hand {
 		return handValue;
 	}
 
-	public void addCard(Card c) {
+	public Card addCard(Card c) {
 		hand.add(c);
+		return c;
 	}
 
 	public void clearHand() {
@@ -29,7 +30,7 @@ public class Hand {
 	public String toString() {
 		String v = "";
 		for (Card card : hand) {
-			v = card.toString();
+			v += card.toString() + " ";
 		}
 		return v;
 	}
