@@ -12,7 +12,7 @@ public class Deck {
 		this.cards = cards;
 	}
 
-	public List<Card> deckOfCards(){
+	private List<Card> deckOfCards(){
 		List<Card> deck = new ArrayList<>(52);
 		for(Suit suit : Suit.values()) {
 			for(Rank rank : Rank.values()) {

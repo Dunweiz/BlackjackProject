@@ -1,12 +1,10 @@
 package BlackJack;
 
 public class Player {
-	private Hand hand;
-	
-	
+	private Hand hand = new BlackJackHand();
 
-	public Player() {
-		hand = new Hand();
+	public void addCard(Card card) {
+		hand.addCard(card);
 	}
 
 	public Hand getHand() {
@@ -16,4 +14,5 @@ public class Player {
 	public void setHand(Hand hand) {
 		this.hand = hand;
 	}
+
 }

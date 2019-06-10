@@ -3,35 +3,34 @@ package BlackJack;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Hand {
-	List<Card> hand = new ArrayList<>();
+public abstract class Hand {
 
-	public int getHandValue() {
-		int handValue = 0;
-		for (Card card : hand) {
-			handValue += card.getValue();
-		}
-		return handValue;
-	}
+	protected List<Card> cards = new ArrayList<Card>();
+	
 
-	public Card addCard(Card c) {
-		hand.add(c);
-		return c;
+	public void addCard(Card card) {
+		cards.add(card);
 	}
 
 	public void clearHand() {
-		hand.clear();
+		cards.clear();
+	}
+
+	public int getHandValue() {
+		int value = 0;
+		for (Card card : cards) {
+			value += card.getValue();
+		}
+		return value;
 	}
 
 	public List<Card> getCards() {
-		return hand;
+		return cards;
 	}
 
+	@Override
 	public String toString() {
-		String v = "";
-		for (Card card : hand) {
-			v += card.toString() + " ";
-		}
-		return v;
+		return "Hand: [" + cards + "]";
 	}
+
 }

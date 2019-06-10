@@ -15,23 +15,20 @@ public class BlackJackApp {
 
 	public void run() {
 		System.out.println("Welcome to BlackJack here's your cards");
-		dealer.getDealerDeck().shuffleCard();
-		dealer.getHand().getCards().add(dealer.dealerDeck().dealCard());
-		player.getHand().getCards().add(dealer.dealerDeck().dealCard());
-		player.getHand().getCards().add(dealer.dealerDeck().dealCard());
+		dealer.Shuffle();
+		dealer.addCard(dealer.dealerDeck.dealCard());
+		for (int i = 0; i < 2; i++) {
+			player.addCard(dealer.dealerDeck.dealCard());
+		}
 		System.out.println("==================");
+		System.out.println("Player");
 		System.out.println(player.getHand());
 		System.out.println("==================");
-		System.out.println("This is one of the dealers cards");
-		System.out.println("==================");
+		System.out.println("Dealer");
 		System.out.println(dealer.getHand());
-		dealer.getHand().getCards().add(dealer.dealerDeck().dealCard());
-		if (player.getHand().getHandValue() > 21 || dealer.getHand().getHandValue() > 21) {
-			winLose();
-			System.exit(0);
-		}
+		dealer.addCard(dealer.dealerDeck.dealCard());
+		anyOneHave21();
 		do {
-
 			System.out.println("==================");
 			System.out.println(player.getHand().getHandValue());
 			System.out.println("==================");
@@ -42,53 +39,26 @@ public class BlackJackApp {
 
 			switch (choice) {
 			case 1:
-				player.getHand().getCards().add(dealer.dealerDeck().dealCard());
+				player.addCard(dealer.dealerDeck.dealCard());
 				System.out.println(player.getHand());
-				if (player.getHand().getHandValue() > 21) {
-					System.out.println(player.getHand().getHandValue());
-					System.out.println("You busted sorry T-T");
-					System.out.println("======================");
-					System.out.println("YOU LOSE!!!");
-					System.exit(0);
-				}
-				if (player.getHand().getHandValue() == 21) {
-					System.out.println(player.getHand());
-					System.out.println();
-					System.out.println(player.getHand().getHandValue());
-					System.out.println("You Win!!");
-					System.exit(0);
-
-				} else {
-					break;
-				}
+				didYouBust();
 				break;
 			case 2:
 				System.out.println("dealer has");
 				System.out.println(dealer.getHand());
 				while (dealer.getHand().getHandValue() < 17) {
-					dealer.getHand().getCards().add(dealer.dealerDeck().dealCard());
-					System.out.println("dealer draws a card");
+					dealer.addCard(dealer.dealerDeck.dealCard());
+					;
+					System.out.println(dealer.getHand());
 				}
+				didYouBust();
 				while (dealer.getHand().getHandValue() < player.getHand().getHandValue()) {
-					dealer.getHand().getCards().add(dealer.dealerDeck().dealCard());
 					System.out.println("dealer draws a card");
+					dealer.addCard(dealer.dealerDeck.dealCard());
 				}
-				if (dealer.getHand().getHandValue() > 21) {
-					System.out.println(player.getHand().getHandValue());
-					System.out.println("Dealer busted ^(^.^)^");
-					System.out.println("======================");
-					System.out.println("YOU WIN!!!");
-					System.exit(0);
-				}
-				if (dealer.getHand().getHandValue() == 21) {
-					System.out.println(player.getHand());
-					System.out.println();
-					System.out.println(player.getHand().getHandValue());
-					System.out.println("YOU LOSE!!");
-					System.exit(0);
-				}
+				didYouBust();
+				anyOneHave21();
 				winLose();
-				System.exit(0);
 				break;
 			default:
 			}
@@ -97,24 +67,60 @@ public class BlackJackApp {
 	}
 
 	public void winLose() {
-		if (player.getHand().getHandValue() <= 21
-				&& player.getHand().getHandValue() > dealer.getHand().getHandValue()) {
+
+		if (player.getHand().getHandValue() < dealer.getHand().getHandValue()) {
 			System.out.println("dealer has");
 			System.out.println(dealer.getHand());
 			System.out.println(dealer.getHand().getHandValue());
 			System.out.println("============");
 			System.out.println("You Win ^(^.^)^");
-			System.out.println("============");
+			System.exit(0);
 		}
-		if (player.getHand().getHandValue() > 21 || dealer.getHand().getHandValue() > player.getHand().getHandValue()) {
+		if (player.getHand().getHandValue() > dealer.getHand().getHandValue()) {
 			System.out.println("dealer has");
 			System.out.println(dealer.getHand());
 			System.out.println(dealer.getHand().getHandValue());
 			System.out.println("YOU LOSE T-T");
 			System.out.println("============");
 			System.out.println("DEALER WINS");
-			System.out.println("============");
+			System.exit(0);
+		}
+	}
 
+	public void anyOneHave21() {
+		if (player.getHand().getHandValue() == 21) {
+			System.out.println(player.getHand().getCards());
+			System.out.println(player.getHand().getHandValue());
+			System.out.println("Dealer Busted");
+			System.out.println("============");
+			System.out.println("YOU WIN ^-^");
+			System.exit(0);
+		}
+		if (dealer.getHand().getHandValue() == 21) {
+			System.out.println("dealer has");
+			System.out.println(dealer.getHand());
+			System.out.println(dealer.getHand().getHandValue());
+			System.out.println("YOU LOSE T-T");
+			System.out.println("============");
+			System.out.println("DEALER WINS");
+			System.exit(0);
+		}
+	}
+
+	public void didYouBust() {
+		if (dealer.getHand().getHandValue() > 21) {
+			System.out.println(dealer.getHand().getCards());
+			System.out.println(dealer.getHand().getHandValue());
+			System.out.println("Dealer Busted");
+			System.out.println("YOU WIN ^-^");
+			System.exit(0);
+		}
+		if (player.getHand().getHandValue() > 21) {
+			System.out.println(player.getHand().getCards());
+			System.out.println(player.getHand().getHandValue());
+			System.out.println("You Busted");
+			System.out.println("YOU LOSE T-T");
+			System.exit(0);
 		}
 	}
 }

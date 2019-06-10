@@ -2,35 +2,20 @@ package BlackJack;
 
 
 public class Dealer extends Player {
-	private Deck dealerDeck;
+	Deck dealerDeck = new Deck();
 	
-	public Dealer() {
-		super();
-		dealerDeck = new Deck();
+	public void Shuffle() {
+		dealerDeck.shuffleCard();
 	}
-	public Deck getDealerDeck() {
+	public Deck getDeck() {
 		return dealerDeck;
 	}
-	public void setDealerDeck(Deck dealerDeck) {
-		this.dealerDeck = dealerDeck;
-	}
-	public Hand getDealerCards() {
-		return dealerCards;
-	}
-	public void setDealerCards(Hand dealerCards) {
-		this.dealerCards = dealerCards;
-	}
-	private Hand dealerCards;
 
-	public Hand dealerCards() {
-		return dealerCards;
-		
+	public void setDeck(Deck deck) {
+		deck = dealerDeck;
 	}
-	public Deck dealerDeck(){
-		dealerDeck.getCards();
-		return dealerDeck;
-		
-	}
+	
+	
 	
 }
 
