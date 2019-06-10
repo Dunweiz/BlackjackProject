@@ -68,7 +68,7 @@ public class BlackJackApp {
 
 	public void winLose() {
 
-		if (player.getHand().getHandValue() < dealer.getHand().getHandValue()) {
+		if (player.getHand().getHandValue() > dealer.getHand().getHandValue()) {
 			System.out.println("dealer has");
 			System.out.println(dealer.getHand());
 			System.out.println(dealer.getHand().getHandValue());
@@ -76,7 +76,7 @@ public class BlackJackApp {
 			System.out.println("You Win ^(^.^)^");
 			System.exit(0);
 		}
-		if (player.getHand().getHandValue() > dealer.getHand().getHandValue()) {
+		if (player.getHand().getHandValue() < dealer.getHand().getHandValue()) {
 			System.out.println("dealer has");
 			System.out.println(dealer.getHand());
 			System.out.println(dealer.getHand().getHandValue());
