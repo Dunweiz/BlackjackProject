@@ -48,12 +48,14 @@ public class BlackJackApp {
 				System.out.println(dealer.getHand());
 				while (dealer.getHand().getHandValue() < 17) {
 					dealer.addCard(dealer.dealerDeck.dealCard());
-					;
+					System.out.println("dealer draws a card");
+					System.out.println("==================");
 					System.out.println(dealer.getHand());
 				}
 				didYouBust();
 				while (dealer.getHand().getHandValue() < player.getHand().getHandValue()) {
 					System.out.println("dealer draws a card");
+					System.out.println("==================");
 					dealer.addCard(dealer.dealerDeck.dealCard());
 				}
 				didYouBust();
